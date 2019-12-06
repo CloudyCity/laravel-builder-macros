@@ -1,0 +1,29 @@
+{
+    "name": "xuyang/laravel-builder-ext",
+    "type": "library",
+    "description": "扩展Laravel DB Builder的查询语法",
+    "keywords": ["laravel", "db", "builder", "extend"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "cloudycity",
+            "email": "cloudycity@foxmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.0",
+        "illuminate/database": "~5.2.0|~5.3.0|~5.4.0|~5.5.0|^5.6.0|~5.7.0|~5.8.0|~5.9.0",
+        "illuminate/support": "~5.2.0|~5.3.0|~5.4.0|~5.5.0|^5.6.0|~5.7.0|~5.8.0|~5.9.0",
+        "squizlabs/php_codesniffer": "^3"
+    },
+    "autoload": {
+        "psr-4": { "Xuyang\\LaravelBuilderExt\\": "src/" }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Xuyang\\LaravelBuilderExt\\DatabaseServiceProvider"
+            ]
+        }
+    }
+}
