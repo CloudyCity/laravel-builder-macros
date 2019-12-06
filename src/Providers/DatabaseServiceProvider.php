@@ -20,7 +20,7 @@ class DatabaseServiceProvider extends ServiceProvider
     {
         // 5.4 and above will use this method to bind
         if (method_exists(Connection::class, 'resolverFor')) {
-            /** @noinspection PhpUndefinedMethodInspection */
+            /* @noinspection PhpUndefinedMethodInspection */
             Connection::resolverFor('mysql', function ($connection, $database, $prefix, $config) {
                 return new MySqlConnection($connection, $database, $prefix, $config);
             });
@@ -35,7 +35,7 @@ class DatabaseServiceProvider extends ServiceProvider
     public function register()
     {
         // 5.3 and below will use this method to bind
-        if (!method_exists(Connection::class, 'resolverFor')) {
+        if (! method_exists(Connection::class, 'resolverFor')) {
             $this->app->bind('db.connection.mysql', MySqlConnection::class);
         }
     }
