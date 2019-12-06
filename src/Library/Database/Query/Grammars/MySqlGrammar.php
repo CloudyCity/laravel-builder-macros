@@ -2,8 +2,8 @@
 
 namespace CloudyCity\LaravelBuilderMacros\Library\Database\Query\Grammars;
 
-use Illuminate\Database\Query\Grammars\MySqlGrammar as Grammar;
 use CloudyCity\LaravelBuilderMacros\Library\Database\Query\MySqlBuilder as Builder;
+use Illuminate\Database\Query\Grammars\MySqlGrammar as Grammar;
 
 class MySqlGrammar extends Grammar
 {
@@ -23,7 +23,7 @@ class MySqlGrammar extends Grammar
         // basic routine regardless of an amount of records given to us to insert.
         $table = $this->wrapTable($query->from);
 
-        if (!is_array(reset($data))) {
+        if (! is_array(reset($data))) {
             $data = [$data];
         }
 
@@ -35,7 +35,7 @@ class MySqlGrammar extends Grammar
         $values = [];
 
         foreach ($data as $record) {
-            $values[] = '(' . $this->parameterize($record) . ')';
+            $values[] = '('.$this->parameterize($record).')';
         }
 
         $values = implode(', ', $values);
@@ -59,7 +59,7 @@ class MySqlGrammar extends Grammar
         // basic routine regardless of an amount of records given to us to insert.
         $table = $this->wrapTable($query->from);
 
-        if (!is_array(reset($data))) {
+        if (! is_array(reset($data))) {
             $data = [$data];
         }
 
@@ -71,7 +71,7 @@ class MySqlGrammar extends Grammar
         $values = [];
 
         foreach ($data as $record) {
-            $values[] = '(' . $this->parameterize($record) . ')';
+            $values[] = '('.$this->parameterize($record).')';
         }
 
         $values = implode(', ', $values);
@@ -101,11 +101,11 @@ class MySqlGrammar extends Grammar
         $columns = $this->columnize($columnNames);
 
         $values = implode(',', array_map(function ($row) {
-            return '(' . $this->parameterize($row) . ')';
+            return '('.$this->parameterize($row).')';
         }, $data));
 
         $updates = implode(',', array_map(function ($columnName) {
-            return $this->wrap($columnName) . ' = VALUES(' . $this->wrap($columnName) . ')';
+            return $this->wrap($columnName).' = VALUES('.$this->wrap($columnName).')';
         }, $columnNames));
 
         return "INSERT INTO {$table} ({$columns}) VALUES {$values} ON DUPLICATE KEY UPDATE {$updates}";

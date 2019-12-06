@@ -28,7 +28,7 @@ class MySqlBuilder extends QueryBuilder
         // Since every insert gets treated like a batch insert, we will make sure the
         // bindings are structured in a way that is convenient for building these
         // inserts statements by verifying the elements are actually an array.
-        if (!is_array(reset($values))) {
+        if (! is_array(reset($values))) {
             $values = [$values];
         } else {
             // Since every insert gets treated like a batch insert, we will make sure the
@@ -76,7 +76,7 @@ class MySqlBuilder extends QueryBuilder
         // Since every insert gets treated like a batch insert, we will make sure the
         // bindings are structured in a way that is convenient for building these
         // inserts statements by verifying the elements are actually an array.
-        if (!is_array(reset($values))) {
+        if (! is_array(reset($values))) {
             $values = [$values];
         } else { // Sort the keys in each row alphabetically for consistency
             foreach ($values as $key => $value) {
@@ -121,7 +121,7 @@ class MySqlBuilder extends QueryBuilder
         // Since every insert gets treated like a batch insert, we will make sure the
         // bindings are structured in a way that is convenient for building these
         // inserts statements by verifying the elements are actually an array.
-        if (!is_array(reset($values))) {
+        if (! is_array(reset($values))) {
             $values = [$values];
         } else {
             // Since every insert gets treated like a batch insert, we will make sure the

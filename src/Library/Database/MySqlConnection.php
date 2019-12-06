@@ -2,10 +2,10 @@
 
 namespace CloudyCity\LaravelBuilderMacros\Library\Database;
 
-use CloudyCity\LaravelBuilderMacros\Library\Database\Query\MySqlBuilder as Builder;
 use CloudyCity\LaravelBuilderMacros\Library\Database\Query\Grammars\MySqlGrammar as QueryGrammar;
-use Illuminate\Database\Query\Processors\MySqlProcessor as Processor;
+use CloudyCity\LaravelBuilderMacros\Library\Database\Query\MySqlBuilder as Builder;
 use Illuminate\Database\MySqlConnection as Connection;
+use Illuminate\Database\Query\Processors\MySqlProcessor as Processor;
 
 class MySqlConnection extends Connection
 {
