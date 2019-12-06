@@ -21,7 +21,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Xuyang\\LaravelBuilderExt\\DatabaseServiceProvider"
+                "CloudyCity\\LaravelBuilderMacros\\DatabaseServiceProvider"
             ]
         }
     }
