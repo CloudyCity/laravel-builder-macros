@@ -22,6 +22,3 @@ matrix:
 
 before_script:
   - travis_wait 20 travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist
-
-script:
-  - vendor/bin/phpcs --standard=psr2 src/
