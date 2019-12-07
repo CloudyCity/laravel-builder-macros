@@ -2,7 +2,6 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
 [![StyleCI][ico-styleci]][link-styleci]
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
@@ -23,7 +22,7 @@ CloudyCity\LaravelBuilderMacros\Providers\DatabaseServiceProvider::class,
 
 ## Usage
 ```php
-$query->insertUpsert($data);
+$query->insertUpdate($data);
 // INSERT INTO TABLE ... VALUES ... ON DUPLICATE KEY UPDATE ...
 
 $query->replace($data);
