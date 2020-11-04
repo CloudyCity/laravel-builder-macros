@@ -2,6 +2,7 @@
 
 namespace CloudyCity\LaravelBuilderMacros\Library\Database\Query;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 
 class MySqlBuilder extends QueryBuilder
@@ -30,10 +31,7 @@ class MySqlBuilder extends QueryBuilder
         // inserts statements by verifying the elements are actually an array.
         if (! is_array(reset($values))) {
             $values = [$values];
-        } else {
-            // Since every insert gets treated like a batch insert, we will make sure the
-            // bindings are structured in a way that is convenient for building these
-            // inserts statements by verifying the elements are actually an array.
+        } else { // Sort the keys in each row alphabetically for consistency
             foreach ($values as $key => $value) {
                 ksort($value);
                 $values[$key] = $value;
@@ -124,9 +122,6 @@ class MySqlBuilder extends QueryBuilder
         if (! is_array(reset($values))) {
             $values = [$values];
         } else {
-            // Since every insert gets treated like a batch insert, we will make sure the
-            // bindings are structured in a way that is convenient for building these
-            // inserts statements by verifying the elements are actually an array.
             foreach ($values as $key => $value) {
                 ksort($value);
                 $values[$key] = $value;
@@ -153,5 +148,31 @@ class MySqlBuilder extends QueryBuilder
         $bindings = $this->cleanBindings($bindings);
 
         return $this->connection->insert($sql, $bindings);
+    }
+
+    /**
+     * Add a "where in raw" clause for integer values to the query.
+     *
+     * @param  string  $column
+     * @param  \Illuminate\Contracts\Support\Arrayable|array  $values
+     * @param  string  $boolean
+     * @param  bool  $not
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function whereIntegerInRaw($column, $values, $boolean = 'and', $not = false)
+    {
+        $type = $not ? 'NotInRaw' : 'InRaw';
+
+        if ($values instanceof Arrayable) {
+            $values = $values->toArray();
+        }
+
+        foreach ($values as &$value) {
+            $value = (int) $value;
+        }
+
+        $this->wheres[] = compact('type', 'column', 'values', 'boolean');
+
+        return $this;
     }
 }

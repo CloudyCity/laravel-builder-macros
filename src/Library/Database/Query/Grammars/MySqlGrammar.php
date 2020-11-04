@@ -110,4 +110,22 @@ class MySqlGrammar extends Grammar
 
         return "INSERT INTO {$table} ({$columns}) VALUES {$values} ON DUPLICATE KEY UPDATE {$updates}";
     }
+
+    /**
+     * Compile a "where in raw" clause.
+     *
+     * For safety, whereIntegerInRaw ensures this method is only used with integer values.
+     *
+     * @param  \Illuminate\Database\Query\Builder  $query
+     * @param  array  $where
+     * @return string
+     */
+    protected function whereInRaw(\Illuminate\Database\Query\Builder $query, $where)
+    {
+        if (! empty($where['values'])) {
+            return $this->wrap($where['column']).' in ('.implode(', ', $where['values']).')';
+        }
+
+        return '0 = 1';
+    }
 }

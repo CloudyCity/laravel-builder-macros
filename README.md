@@ -31,6 +31,9 @@ $query->replace($data);
 
 $query->insertIgnore($data);
 // INSERT IGNORE INTO TABLE ... VALUES ...
+
+$query->whereIntegerInRaw('uid', ['1', '2'])->get();
+// for the old version
 ```
 
 ## License
